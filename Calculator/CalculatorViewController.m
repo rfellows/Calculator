@@ -7,54 +7,95 @@
 //
 
 #import "CalculatorViewController.h"
+#import "CalculatorBrain.h"
+
+@interface CalculatorViewController()
+@property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
+@property (nonatomic, strong) CalculatorBrain *brain;
+- (void) logEntry:(NSString *)value;
+@end
 
 @implementation CalculatorViewController
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
+@synthesize display = _display;
+@synthesize brainContents = _brainContents;
+@synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
+@synthesize brain = _brain;
+
+- (CalculatorBrain *)brain {
+  if (!_brain) {
+    _brain = [[CalculatorBrain alloc] init];
+  }
+  return _brain;
 }
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+- (IBAction)digitPressed:(UIButton *)sender {
+  
+  NSString *digit = sender.currentTitle;
+  
+  // let's see if there is a dot (.) in the string. only allow 1 of them
+  if ( [@"." isEqualToString:digit] &&
+       [self.display.text rangeOfString:@"."].location != NSNotFound) {
+    return;
+  }
+  
+  if (self.userIsInTheMiddleOfEnteringANumber) {
+    self.display.text = [self.display.text stringByAppendingString:digit];
+  } else {
+    self.display.text = digit;
+    self.userIsInTheMiddleOfEnteringANumber = YES;
+  }
+  
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+- (IBAction)enterPressed {
+  [self logEntry:self.display.text];
+  [self.brain pushOperand:[self.display.text doubleValue]];
+  self.userIsInTheMiddleOfEnteringANumber = NO;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
+- (IBAction)operationPressed:(UIButton *)sender {
+
+  NSString *operation = sender.currentTitle;
+
+  // save the user... if they press an operation key, implicitly hit enter for them
+  if ( [@"+/-" isEqualToString:operation] && self.userIsInTheMiddleOfEnteringANumber) {
+    // don't do an operation, just flip the sign in the display
+    self.display.text = [NSString stringWithFormat:@"%g", [self.display.text doubleValue] * -1];
+    return;
+  } else if (self.userIsInTheMiddleOfEnteringANumber) {
+    [self enterPressed];
+  }
+  
+  double result = [self.brain performOperation:operation];
+  self.display.text = [NSString stringWithFormat:@"%g", result];
+  
+  // extra credit, add the = sign after an operation to the entry log
+  [self logEntry:[operation stringByAppendingString:@" ="]];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+- (void) logEntry:(NSString *)value {
+  self.brainContents.text = [self.brainContents.text stringByAppendingFormat:@"%@ ",value];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
+- (void)viewDidUnload {
+  [self setBrainContents:nil];
+  [super viewDidUnload];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
+- (IBAction)clearPressed {
+  self.brainContents.text = @"";
+  self.display.text = @"0";
+  [self.brain clear]; 
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-  return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+- (IBAction)backspacePressed {
+  NSUInteger length = [self.display.text length];
+  if(length > 1) {
+    self.display.text = [self.display.text substringToIndex:length-1];
+  } else {
+    self.display.text = @"0";
+  }
 }
 
 @end

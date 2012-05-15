@@ -15,6 +15,7 @@
 		E6490C85155DEF5D00E4054A /* CalculatorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E6490C84155DEF5D00E4054A /* CalculatorAppDelegate.m */; };
 		E6490C88155DEF5D00E4054A /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6490C86155DEF5D00E4054A /* MainStoryboard.storyboard */; };
 		E6490C8B155DEF5D00E4054A /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6490C8A155DEF5D00E4054A /* CalculatorViewController.m */; };
+		E6490C93155DFC5800E4054A /* CalculatorBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = E6490C92155DFC5800E4054A /* CalculatorBrain.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,15 +23,17 @@
 		E6490C74155DEF5D00E4054A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E6490C76155DEF5D00E4054A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E6490C78155DEF5D00E4054A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		E6490C7C155DEF5D00E4054A /* Calculator-Info.plist */ = {isa = PBXFileReference; path = "Calculator-Info.plist"; sourceTree = "<group>"; };
+		E6490C7C155DEF5D00E4054A /* Calculator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Calculator-Info.plist"; sourceTree = "<group>"; };
 		E6490C7E155DEF5D00E4054A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E6490C80155DEF5D00E4054A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E6490C82155DEF5D00E4054A /* Calculator-Prefix.pch */ = {isa = PBXFileReference; path = "Calculator-Prefix.pch"; sourceTree = "<group>"; };
-		E6490C83155DEF5D00E4054A /* CalculatorAppDelegate.h */ = {isa = PBXFileReference; path = CalculatorAppDelegate.h; sourceTree = "<group>"; };
+		E6490C82155DEF5D00E4054A /* Calculator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Calculator-Prefix.pch"; sourceTree = "<group>"; };
+		E6490C83155DEF5D00E4054A /* CalculatorAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculatorAppDelegate.h; sourceTree = "<group>"; };
 		E6490C84155DEF5D00E4054A /* CalculatorAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorAppDelegate.m; sourceTree = "<group>"; };
 		E6490C87155DEF5D00E4054A /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		E6490C89155DEF5D00E4054A /* CalculatorViewController.h */ = {isa = PBXFileReference; path = CalculatorViewController.h; sourceTree = "<group>"; };
+		E6490C89155DEF5D00E4054A /* CalculatorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculatorViewController.h; sourceTree = "<group>"; };
 		E6490C8A155DEF5D00E4054A /* CalculatorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorViewController.m; sourceTree = "<group>"; };
+		E6490C91155DFC5800E4054A /* CalculatorBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorBrain.h; sourceTree = "<group>"; };
+		E6490C92155DFC5800E4054A /* CalculatorBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorBrain.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +80,8 @@
 		E6490C7A155DEF5D00E4054A /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				E6490C91155DFC5800E4054A /* CalculatorBrain.h */,
+				E6490C92155DFC5800E4054A /* CalculatorBrain.m */,
 				E6490C83155DEF5D00E4054A /* CalculatorAppDelegate.h */,
 				E6490C84155DEF5D00E4054A /* CalculatorAppDelegate.m */,
 				E6490C86155DEF5D00E4054A /* MainStoryboard.storyboard */,
@@ -163,6 +168,7 @@
 				E6490C81155DEF5D00E4054A /* main.m in Sources */,
 				E6490C85155DEF5D00E4054A /* CalculatorAppDelegate.m in Sources */,
 				E6490C8B155DEF5D00E4054A /* CalculatorViewController.m in Sources */,
+				E6490C93155DFC5800E4054A /* CalculatorBrain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

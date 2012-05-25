@@ -10,5 +10,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "-[CalculatorViewController testPressed:]:CalculatorViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[text hasSuffix:@&quot;2&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

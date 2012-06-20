@@ -8,6 +8,7 @@
 
 #import "CalculatorViewController.h"
 #import "CalculatorBrain.h"
+#import "GraphViewController.h"
 
 @interface CalculatorViewController()
 
@@ -33,6 +34,13 @@
     _brain = [[CalculatorBrain alloc] init];
   }
   return _brain;
+}
+
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  if([segue.identifier isEqualToString:@"ShowGraph"]) {
+    [segue.destinationViewController setProgram:self.brain.program];
+  }
 }
 
 - (IBAction)digitPressed:(UIButton *)sender {
